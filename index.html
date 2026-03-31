@@ -80,10 +80,10 @@ body{font-family:var(--font-b);background:var(--white);color:var(--black);overfl
 .detail-name{font-family:var(--font-d);font-size:30px;letter-spacing:.5px;margin-bottom:4px;}
 .detail-price{font-size:20px;font-weight:500;margin-bottom:16px;}
 .detail-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray3);margin-bottom:8px;}
-.size-grid{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
-.size-btn{min-width:44px;height:36px;padding:0 12px;border:1.5px solid var(--gray2);border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);transition:all .15s;}
+.size-grid{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.size-btn{min-width:52px;height:44px;padding:0 14px;border:1.5px solid var(--gray2);border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:var(--white);transition:all .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .size-btn.selected{background:var(--black);color:var(--white);border-color:var(--black);}
-.add-cart-btn{width:100%;padding:16px;background:var(--black);color:var(--white);font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;margin-top:8px;transition:transform .15s;}
+.add-cart-btn{width:100%;padding:16px;background:var(--black);color:var(--white);font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;margin-top:8px;transition:transform .15s;touch-action:manipulation;}
 .add-cart-btn:active{transform:scale(.98);}
 
 /* CART */
@@ -714,11 +714,16 @@ function openProduct(id){
   document.getElementById('detail-img').alt=currentProduct.name;
   document.getElementById('detail-name').textContent=currentProduct.name;
   document.getElementById('detail-price').textContent=fmt(currentProduct.price);
-  document.getElementById('size-grid').innerHTML=currentProduct.sizes.map(s=>`<button class="size-btn" onclick="selectSize('${s}',this)">${s}</button>`).join('');
+  document.getElementById('size-grid').innerHTML=currentProduct.sizes.map(s=>`<button class="size-btn" onclick="event.stopPropagation();selSize('${s}',this)">${s}</button>`).join('');
   prevScreen=document.querySelector('.screen.active')?.id.replace('screen-','')||'catalog';
   goScreen('product');
 }
 
+function selSize(s,el){
+  selectedSize=s;
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+}
 function buyNow(){
   if(!selectedSize){showToast('Selecione um tamanho');return;}
   showToast('Abrindo pagamento seguro...');

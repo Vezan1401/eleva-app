@@ -304,6 +304,19 @@ body{font-family:var(--font-b);background:var(--white);color:var(--black);overfl
   </div>
 </div>
 
+<!-- WEBVIEW CHECKOUT -->
+<div class="screen" id="screen-webview" style="padding-bottom:0">
+  <div style="position:sticky;top:0;z-index:100;background:var(--black);height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 18px;">
+    <button onclick="closeWebview()" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;color:var(--white);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      <span style="font-size:13px;letter-spacing:.5px;">Voltar</span>
+    </button>
+    <div style="font-family:var(--font-d);font-size:20px;color:var(--white);letter-spacing:3px;">ELEVA</div>
+    <div style="width:60px"></div>
+  </div>
+  <iframe id="checkout-frame" src="" style="width:100%;height:calc(100dvh - var(--nav));border:none;display:block;" allow="payment"></iframe>
+</div>
+
 <!-- TRACK -->
 <div class="screen" id="screen-track">
   <nav class="top-nav"><div class="nav-logo">RASTREIO</div></nav>
@@ -625,14 +638,8 @@ window.handleAccountNav = () => {
 window.handleCheckout = () => {
   if (!currentUser) { showToast('Faça login para finalizar a compra'); setTimeout(()=>goScreen('login'),1000); return; }
   if (cart.length === 0) return;
-  showToast('Abrindo pagamento seguro...');
-  setTimeout(() => {
-    if (cart.length === 1) {
-      window.open(cart[0].url, '_blank');
-    } else {
-      window.open('https://byeleva.com.br', '_blank');
-    }
-  }, 800);
+  const url = cart.length === 1 ? cart[0].url : 'https://byeleva.com.br';
+  openWebview(url);
 };
 </script>
 
@@ -719,6 +726,17 @@ function openProduct(id){
   goScreen('product');
 }
 
+function openWebview(url) {
+  prevScreen = document.querySelector('.screen.active')?.id.replace('screen-','') || 'home';
+  document.getElementById('checkout-frame').src = url;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-webview').classList.add('active');
+  document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));
+}
+function closeWebview() {
+  document.getElementById('checkout-frame').src = '';
+  goScreen(prevScreen || 'home');
+}
 function selSize(s,el){
   selectedSize=s;
   document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));
@@ -726,8 +744,7 @@ function selSize(s,el){
 }
 function buyNow(){
   if(!selectedSize){showToast('Selecione um tamanho');return;}
-  showToast('Abrindo pagamento seguro...');
-  setTimeout(()=>window.open(currentProduct.url,'_blank'),800);
+  openWebview(currentProduct.url);
 }
 
 function addToCart(){

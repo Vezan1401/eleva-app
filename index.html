@@ -27,9 +27,7 @@
     --nav-h: 60px;
     --bottom-h: 64px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
   body {
     font-family: var(--font-body);
     background: var(--white);
@@ -41,33 +39,23 @@
     margin: 0 auto;
     position: relative;
   }
-
-  /* ── SCREENS ── */
   .screen {
-    position: absolute;
-    inset: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+    position: absolute; inset: 0;
+    overflow-y: auto; overflow-x: hidden;
     padding-bottom: calc(var(--bottom-h) + 16px);
-    display: none;
-    animation: fadeIn .22s ease;
+    display: none; animation: fadeIn .22s ease;
   }
   .screen.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-  /* ── TOP NAV ── */
+  /* NAV */
   .top-nav {
     position: sticky; top: 0; z-index: 100;
-    background: var(--black);
-    height: var(--nav-h);
+    background: var(--black); height: var(--nav-h);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 18px;
   }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 28px; color: var(--white);
-    letter-spacing: 3px;
-  }
+  .nav-logo { font-family: var(--font-display); font-size: 28px; color: var(--white); letter-spacing: 3px; }
   .nav-actions { display: flex; gap: 14px; align-items: center; }
   .nav-btn { background: none; border: none; cursor: pointer; padding: 4px; position: relative; }
   .nav-btn svg { width: 22px; height: 22px; stroke: var(--white); fill: none; stroke-width: 1.8; }
@@ -79,105 +67,68 @@
     display: flex; align-items: center; justify-content: center;
   }
 
-  /* ── PROMO STRIP ── */
+  /* PROMO */
   .promo-strip {
-    background: var(--accent);
-    color: var(--black);
+    background: var(--accent); color: var(--black);
     font-size: 11px; font-weight: 500;
-    text-align: center; padding: 7px 12px;
-    letter-spacing: .5px;
-    white-space: nowrap; overflow: hidden;
+    text-align: center; padding: 7px 12px; letter-spacing: .5px;
   }
 
-  /* ── HERO ── */
-  .hero {
-    background: var(--black);
-    padding: 32px 20px 36px;
-    position: relative; overflow: hidden;
-  }
-  .hero-eyebrow {
-    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--gray3); margin-bottom: 10px;
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: 72px; line-height: .92; color: var(--white);
-    margin-bottom: 14px;
-  }
+  /* HERO */
+  .hero { background: var(--black); padding: 32px 20px 36px; position: relative; overflow: hidden; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray3); margin-bottom: 10px; }
+  .hero-title { font-family: var(--font-display); font-size: 72px; line-height: .92; color: var(--white); margin-bottom: 14px; }
   .hero-title span { color: var(--accent); }
   .hero-sub { font-size: 13px; color: var(--gray3); margin-bottom: 22px; line-height: 1.5; }
   .hero-cta {
-    display: inline-block;
-    background: var(--accent); color: var(--black);
+    display: inline-block; background: var(--accent); color: var(--black);
     font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-    padding: 12px 24px; border-radius: 2px; cursor: pointer; border: none;
-    transition: transform .15s;
+    padding: 12px 24px; border-radius: 2px; cursor: pointer; border: none; transition: transform .15s;
   }
   .hero-cta:active { transform: scale(.97); }
   .hero-deco {
     position: absolute; right: -20px; top: 10px;
     font-family: var(--font-display); font-size: 160px;
-    color: rgba(255,255,255,.04); line-height: 1; pointer-events: none;
-    user-select: none;
+    color: rgba(255,255,255,.04); line-height: 1; pointer-events: none; user-select: none;
   }
 
-  /* ── SECTION ── */
+  /* SECTION */
   .section { padding: 22px 16px 4px; }
   .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
   .section-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; }
   .section-link { font-size: 12px; color: var(--gray3); cursor: pointer; }
 
-  /* ── CATEGORY PILLS ── */
-  .cats {
-    display: flex; gap: 8px;
-    padding: 0 16px 16px;
-    overflow-x: auto;
-  }
+  /* CATS */
+  .cats { display: flex; gap: 8px; padding: 0 16px 16px; overflow-x: auto; }
   .cats::-webkit-scrollbar { display: none; }
   .cat-pill {
-    flex-shrink: 0;
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-size: 12px; font-weight: 500;
-    cursor: pointer; border: 1.5px solid transparent;
-    transition: all .15s;
-    white-space: nowrap;
+    flex-shrink: 0; padding: 8px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    border: 1.5px solid transparent; transition: all .15s; white-space: nowrap;
   }
   .cat-pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
   .cat-pill:not(.active) { background: var(--gray); color: var(--black); border-color: var(--gray2); }
 
-  /* ── PRODUCT GRID ── */
-  .product-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; padding: 0 16px 12px;
-  }
+  /* PRODUCT GRID */
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px 12px; }
   .product-card { cursor: pointer; }
   .product-img {
-    width: 100%; aspect-ratio: 3/4;
-    border-radius: 10px; overflow: hidden;
-    background: var(--gray);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; margin-bottom: 8px;
-    transition: transform .2s;
+    width: 100%; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden;
+    background: var(--gray); position: relative; margin-bottom: 8px; transition: transform .2s;
   }
   .product-card:active .product-img { transform: scale(.97); }
-  .product-img-bg {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 52px;
-  }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .product-tag {
     position: absolute; top: 8px; left: 8px;
     background: var(--black); color: var(--white);
     font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
     padding: 3px 8px; border-radius: 2px;
   }
+  .product-tag.sale { background: var(--accent); color: var(--black); }
   .product-fav {
     position: absolute; top: 8px; right: 8px;
     background: rgba(255,255,255,.9); border-radius: 50%;
-    width: 28px; height: 28px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
+    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
   .product-fav svg { width: 14px; height: 14px; stroke: var(--black); fill: none; stroke-width: 1.8; }
   .product-fav.faved svg { fill: #e44; stroke: #e44; }
@@ -185,19 +136,17 @@
   .product-price { font-size: 14px; font-weight: 500; }
   .product-price-old { font-size: 11px; color: var(--gray3); text-decoration: line-through; margin-left: 4px; }
 
-  /* ── PRODUCT DETAIL ── */
+  /* DETAIL */
   .detail-img {
-    width: 100%; aspect-ratio: 4/5;
-    background: var(--gray);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 100px; position: relative;
+    width: 100%; aspect-ratio: 4/5; background: var(--gray);
+    position: relative; overflow: hidden;
   }
+  .detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .detail-back {
     position: absolute; top: 14px; left: 14px;
     background: rgba(255,255,255,.9); border-radius: 50%;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; border: none;
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; border: none; z-index: 10;
   }
   .detail-back svg { width: 18px; height: 18px; stroke: var(--black); fill: none; stroke-width: 2; }
   .detail-body { padding: 18px 18px 0; }
@@ -208,31 +157,23 @@
   .size-btn {
     min-width: 44px; height: 36px; padding: 0 12px;
     border: 1.5px solid var(--gray2); border-radius: 6px;
-    font-size: 13px; font-weight: 500; cursor: pointer;
-    background: var(--white); transition: all .15s;
+    font-size: 13px; font-weight: 500; cursor: pointer; background: var(--white); transition: all .15s;
   }
   .size-btn.selected { background: var(--black); color: var(--white); border-color: var(--black); }
   .add-cart-btn {
-    width: 100%; padding: 16px;
-    background: var(--black); color: var(--white);
+    width: 100%; padding: 16px; background: var(--black); color: var(--white);
     font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-    border: none; border-radius: 8px; cursor: pointer; margin-top: 8px;
-    transition: transform .15s;
+    border: none; border-radius: 8px; cursor: pointer; margin-top: 8px; transition: transform .15s;
   }
   .add-cart-btn:active { transform: scale(.98); }
 
-  /* ── CART ── */
-  .cart-item {
-    display: flex; gap: 12px;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--gray2);
-  }
+  /* CART */
+  .cart-item { display: flex; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--gray2); }
   .cart-thumb {
-    width: 70px; height: 88px; border-radius: 8px;
-    background: var(--gray); flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
+    width: 70px; height: 88px; border-radius: 8px; background: var(--gray);
+    flex-shrink: 0; overflow: hidden;
   }
+  .cart-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .cart-info { flex: 1; }
   .cart-item-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
   .cart-item-var { font-size: 12px; color: var(--gray3); margin-bottom: 10px; }
@@ -242,62 +183,34 @@
     width: 28px; height: 28px; border-radius: 50%;
     border: 1px solid var(--gray2); background: var(--white);
     font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: background .15s;
   }
   .qty-btn:active { background: var(--gray); }
   .qty-n { font-size: 14px; font-weight: 500; min-width: 16px; text-align: center; }
   .cart-item-price { font-size: 14px; font-weight: 500; }
-  .cart-summary {
-    margin: 14px 16px;
-    background: var(--gray); border-radius: 12px;
-    padding: 14px 16px;
-  }
-  .summary-row {
-    display: flex; justify-content: space-between;
-    font-size: 13px; color: var(--gray3); margin-bottom: 8px;
-  }
-  .summary-row.total {
-    font-size: 16px; font-weight: 500; color: var(--black);
-    border-top: 1px solid var(--gray2); padding-top: 10px; margin-top: 2px;
-  }
+  .cart-summary { margin: 14px 16px; background: var(--gray); border-radius: 12px; padding: 14px 16px; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray3); margin-bottom: 8px; }
+  .summary-row.total { font-size: 16px; font-weight: 500; color: var(--black); border-top: 1px solid var(--gray2); padding-top: 10px; margin-top: 2px; }
   .summary-row .green { color: #2a7a3a; }
   .checkout-btn {
-    margin: 0 16px; width: calc(100% - 32px);
-    padding: 16px; background: var(--black); color: var(--white);
+    margin: 0 16px; width: calc(100% - 32px); padding: 16px;
+    background: var(--black); color: var(--white);
     font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
     border: none; border-radius: 8px; cursor: pointer;
   }
-  .empty-cart {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 60px 20px; gap: 12px; text-align: center;
-  }
+  .empty-cart { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; gap: 12px; text-align: center; }
   .empty-cart svg { width: 48px; height: 48px; stroke: var(--gray2); fill: none; stroke-width: 1.2; }
   .empty-cart p { font-size: 14px; color: var(--gray3); }
-  .empty-cart button {
-    margin-top: 8px; padding: 12px 24px;
-    background: var(--black); color: var(--white);
-    border: none; border-radius: 6px; font-size: 13px; cursor: pointer;
-  }
+  .empty-cart button { margin-top: 8px; padding: 12px 24px; background: var(--black); color: var(--white); border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
 
-  /* ── TRACK ── */
-  .track-header {
-    background: var(--black); padding: 18px 18px 22px;
-  }
+  /* TRACK */
+  .track-header { background: var(--black); padding: 18px 18px 22px; color: var(--white); }
   .track-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray3); margin-bottom: 5px; }
-  .track-num { font-family: var(--font-display); font-size: 26px; color: var(--white); letter-spacing: 1px; }
-  .track-status {
-    display: inline-block; margin-top: 10px;
-    background: var(--accent); color: var(--black);
-    font-size: 11px; font-weight: 500; letter-spacing: 1px;
-    padding: 4px 12px; border-radius: 100px;
-  }
+  .track-num { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; }
+  .track-status { display: inline-block; margin-top: 10px; background: var(--accent); color: var(--black); font-size: 11px; font-weight: 500; letter-spacing: 1px; padding: 4px 12px; border-radius: 100px; }
   .track-steps { padding: 20px 18px; }
-  .step { display: flex; gap: 14px; margin-bottom: 0; }
+  .step { display: flex; gap: 14px; }
   .step-left { display: flex; flex-direction: column; align-items: center; }
-  .step-dot {
-    width: 28px; height: 28px; border-radius: 50%;
-    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  }
+  .step-dot { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   .step-dot.done { background: var(--black); }
   .step-dot.done svg { width: 12px; height: 12px; stroke: var(--white); fill: none; stroke-width: 2.5; }
   .step-dot.active { background: var(--accent); }
@@ -312,20 +225,16 @@
   .step-sub { font-size: 12px; color: var(--gray3); }
   .step-time { font-size: 11px; color: var(--gray3); margin-top: 4px; }
 
-  /* ── BOTTOM NAV ── */
+  /* BOTTOM NAV */
   .bottom-nav {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 480px;
-    height: var(--bottom-h);
-    background: var(--white);
-    border-top: 1px solid var(--gray2);
+    width: 100%; max-width: 480px; height: var(--bottom-h);
+    background: var(--white); border-top: 1px solid var(--gray2);
     display: flex; z-index: 200;
   }
   .bnav-item {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 4px; cursor: pointer; border: none; background: none;
-    transition: transform .15s;
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; cursor: pointer; border: none; background: none; transition: transform .15s;
   }
   .bnav-item:active { transform: scale(.9); }
   .bnav-item svg { width: 22px; height: 22px; stroke: var(--gray3); fill: none; stroke-width: 1.8; transition: stroke .15s; }
@@ -341,22 +250,19 @@
     transform: translateX(8px);
   }
 
-  /* ── TOAST ── */
+  /* TOAST */
   .toast {
     position: fixed; bottom: calc(var(--bottom-h) + 16px);
     left: 50%; transform: translateX(-50%) translateY(20px);
     background: var(--black); color: var(--white);
     padding: 12px 20px; border-radius: 100px;
     font-size: 13px; font-weight: 500;
-    opacity: 0; transition: all .3s; z-index: 999;
-    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: all .3s; z-index: 999; white-space: nowrap; pointer-events: none;
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* ── COUPON ── */
-  .coupon-row {
-    display: flex; gap: 8px; margin: 0 16px 14px;
-  }
+  /* COUPON */
+  .coupon-row { display: flex; gap: 8px; margin: 0 16px 14px; }
   .coupon-input {
     flex: 1; padding: 12px 14px; border: 1.5px solid var(--gray2);
     border-radius: 8px; font-size: 13px; font-family: var(--font-body);
@@ -369,11 +275,8 @@
     letter-spacing: 1px; cursor: pointer; white-space: nowrap;
   }
 
-  /* ── CATALOG ── */
-  .search-bar {
-    padding: 12px 16px;
-    display: flex; gap: 10px;
-  }
+  /* SEARCH */
+  .search-bar { padding: 12px 16px; display: flex; gap: 10px; }
   .search-input {
     flex: 1; padding: 11px 14px; border: 1.5px solid var(--gray2);
     border-radius: 100px; font-size: 13px; font-family: var(--font-body);
@@ -381,39 +284,37 @@
   }
   .search-input:focus { border-color: var(--black); background: var(--white); }
 
-  /* ── ACCOUNT ── */
-  .account-hero {
-    background: var(--black); padding: 32px 20px 28px;
-    text-align: center; color: var(--white);
-  }
+  /* ACCOUNT */
+  .account-hero { background: var(--black); padding: 32px 20px 28px; text-align: center; color: var(--white); }
   .account-avatar {
     width: 72px; height: 72px; border-radius: 50%;
     background: var(--accent); color: var(--black);
     font-family: var(--font-display); font-size: 28px;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;
   }
   .account-name { font-family: var(--font-display); font-size: 24px; letter-spacing: 1px; margin-bottom: 4px; }
   .account-email { font-size: 12px; color: var(--gray3); }
-  .account-menu { padding: 8px 0; }
   .account-item {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 18px; border-bottom: 1px solid var(--gray2);
-    cursor: pointer;
+    padding: 16px 18px; border-bottom: 1px solid var(--gray2); cursor: pointer;
   }
   .account-item-left { display: flex; align-items: center; gap: 12px; }
-  .account-item-icon {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: var(--gray); display: flex; align-items: center; justify-content: center;
-  }
+  .account-item-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--gray); display: flex; align-items: center; justify-content: center; }
   .account-item-icon svg { width: 18px; height: 18px; stroke: var(--black); fill: none; stroke-width: 1.8; }
   .account-item-name { font-size: 14px; }
   .account-item-chevron svg { width: 16px; height: 16px; stroke: var(--gray3); fill: none; stroke-width: 2; }
+
+  /* IMG PLACEHOLDER */
+  .img-placeholder {
+    width: 100%; height: 100%; background: var(--gray2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--gray3); letter-spacing: .5px;
+  }
 </style>
 </head>
 <body>
 
-<!-- ══ SCREEN: HOME ══ -->
+<!-- HOME -->
 <div class="screen active" id="screen-home">
   <nav class="top-nav">
     <div class="nav-logo">ELEVA</div>
@@ -436,9 +337,7 @@
     <div class="hero-deco">E</div>
   </div>
   <div class="section">
-    <div class="section-header">
-      <span class="section-title">CATEGORIAS</span>
-    </div>
+    <div class="section-header"><span class="section-title">CATEGORIAS</span></div>
   </div>
   <div class="cats" id="home-cats"></div>
   <div class="section">
@@ -450,7 +349,7 @@
   <div class="product-grid" id="home-grid"></div>
 </div>
 
-<!-- ══ SCREEN: CATALOG ══ -->
+<!-- CATALOG -->
 <div class="screen" id="screen-catalog">
   <nav class="top-nav">
     <div class="nav-logo">ELEVA</div>
@@ -468,14 +367,13 @@
   <div class="product-grid" id="catalog-grid"></div>
 </div>
 
-<!-- ══ SCREEN: PRODUCT DETAIL ══ -->
+<!-- PRODUCT DETAIL -->
 <div class="screen" id="screen-product">
-  <div class="detail-img" id="detail-img">
+  <div class="detail-img" id="detail-img-wrap">
     <button class="detail-back" onclick="goBack()">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
-    <span id="detail-emoji" style="font-size:100px"></span>
-    <span id="detail-tag-top" class="product-tag" style="top:54px;left:14px"></span>
+    <img id="detail-img" src="" alt="">
   </div>
   <div class="detail-body">
     <div class="detail-name" id="detail-name"></div>
@@ -487,7 +385,7 @@
   </div>
 </div>
 
-<!-- ══ SCREEN: CART ══ -->
+<!-- CART -->
 <div class="screen" id="screen-cart">
   <nav class="top-nav">
     <div class="nav-logo">SACOLA</div>
@@ -518,11 +416,9 @@
   </div>
 </div>
 
-<!-- ══ SCREEN: TRACK ══ -->
+<!-- TRACK -->
 <div class="screen" id="screen-track">
-  <nav class="top-nav">
-    <div class="nav-logo">RASTREIO</div>
-  </nav>
+  <nav class="top-nav"><div class="nav-logo">RASTREIO</div></nav>
   <div class="track-header">
     <div class="track-label">Número do pedido</div>
     <div class="track-num">#ELV-2025-8471</div>
@@ -530,93 +426,49 @@
   </div>
   <div class="track-steps">
     <div class="step">
-      <div class="step-left">
-        <div class="step-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="step-line done"></div>
-      </div>
-      <div class="step-content">
-        <div class="step-title">Pedido confirmado</div>
-        <div class="step-sub">Pagamento aprovado via Pix</div>
-        <div class="step-time">28/03 · 10:14</div>
-      </div>
+      <div class="step-left"><div class="step-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="step-line done"></div></div>
+      <div class="step-content"><div class="step-title">Pedido confirmado</div><div class="step-sub">Pagamento aprovado via Pix</div><div class="step-time">28/03 · 10:14</div></div>
     </div>
     <div class="step">
-      <div class="step-left">
-        <div class="step-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="step-line done"></div>
-      </div>
-      <div class="step-content">
-        <div class="step-title">Separação e embalagem</div>
-        <div class="step-sub">Produtos embalados com cuidado</div>
-        <div class="step-time">29/03 · 09:30</div>
-      </div>
+      <div class="step-left"><div class="step-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="step-line done"></div></div>
+      <div class="step-content"><div class="step-title">Separação e embalagem</div><div class="step-sub">Produtos embalados com cuidado</div><div class="step-time">29/03 · 09:30</div></div>
     </div>
     <div class="step">
-      <div class="step-left">
-        <div class="step-dot active"></div>
-        <div class="step-line"></div>
-      </div>
-      <div class="step-content">
-        <div class="step-title">Em transporte</div>
-        <div class="step-sub">Saiu para entrega — ABC Paulista</div>
-        <div class="step-time">30/03 · 08:00</div>
-      </div>
+      <div class="step-left"><div class="step-dot active"></div><div class="step-line"></div></div>
+      <div class="step-content"><div class="step-title">Em transporte</div><div class="step-sub">Saiu para entrega — ABC Paulista</div><div class="step-time">30/03 · 08:00</div></div>
     </div>
     <div class="step">
-      <div class="step-left">
-        <div class="step-dot pending"></div>
-      </div>
-      <div class="step-content">
-        <div class="step-title pending">Entregue</div>
-        <div class="step-sub">Previsão: 04/04</div>
-      </div>
+      <div class="step-left"><div class="step-dot pending"></div></div>
+      <div class="step-content"><div class="step-title pending">Entregue</div><div class="step-sub">Previsão: 04/04</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══ SCREEN: ACCOUNT ══ -->
+<!-- ACCOUNT -->
 <div class="screen" id="screen-account">
-  <nav class="top-nav">
-    <div class="nav-logo">MINHA CONTA</div>
-  </nav>
+  <nav class="top-nav"><div class="nav-logo">MINHA CONTA</div></nav>
   <div class="account-hero">
     <div class="account-avatar">EL</div>
     <div class="account-name">CLIENTE ELEVA</div>
     <div class="account-email">cliente@email.com</div>
   </div>
-  <div class="account-menu">
+  <div>
     <div class="account-item" onclick="goScreen('track')">
-      <div class="account-item-left">
-        <div class="account-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <span class="account-item-name">Meus pedidos</span>
-      </div>
+      <div class="account-item-left"><div class="account-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="account-item-name">Meus pedidos</span></div>
       <div class="account-item-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
     <div class="account-item" onclick="goScreen('track')">
-      <div class="account-item-left">
-        <div class="account-item-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-        <span class="account-item-name">Rastrear pedido</span>
-      </div>
+      <div class="account-item-left"><div class="account-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span class="account-item-name">Rastrear pedido</span></div>
       <div class="account-item-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
     <div class="account-item">
-      <div class="account-item-left">
-        <div class="account-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <span class="account-item-name">Endereços</span>
-      </div>
-      <div class="account-item-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
-    </div>
-    <div class="account-item">
-      <div class="account-item-left">
-        <div class="account-item-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-        <span class="account-item-name">Favoritos</span>
-      </div>
+      <div class="account-item-left"><div class="account-item-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><span class="account-item-name">Favoritos</span></div>
       <div class="account-item-chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
     </div>
   </div>
 </div>
 
-<!-- ══ BOTTOM NAV ══ -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button class="bnav-item active" id="bnav-home" onclick="goScreen('home')">
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -637,55 +489,64 @@
   </button>
 </nav>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
+const CDN = 'https://dcdn-us.mitiendanube.com/stores/006/587/246/products/';
+
 const PRODUCTS = [
-  { id:1, name:'Top Aura', cat:'Top', price:90, emoji:'👕', tag:'Novo', colors:['Amarelo','Bege'], bg:'#f5e6c8', sizes:['PP','P','M','G','GG'] },
-  { id:2, name:'Top Wine', cat:'Top', price:95, emoji:'👚', tag:'Novo', colors:['Vinho'], bg:'#e8d0d0', sizes:['PP','P','M','G'] },
-  { id:3, name:'Top Reflex Preto', cat:'Top', price:80, emoji:'🩱', tag:'', colors:['Preto'], bg:'#d0d0d0', sizes:['PP','P','M','G','GG'] },
-  { id:4, name:'Shorts Aura', cat:'Shorts', price:100, emoji:'🩳', tag:'Novo', colors:['Amarelo','Bege'], bg:'#f5e6c8', sizes:['PP','P','M','G','GG'] },
-  { id:5, name:'Shorts Reflex Preto', cat:'Shorts', price:110, emoji:'🩲', tag:'', colors:['Preto'], bg:'#c8c8c8', sizes:['PP','P','M','G'] },
-  { id:6, name:'Legging Reflex', cat:'Legging', price:130, emoji:'🩱', tag:'', colors:['Preto','Cinza'], bg:'#d0d0d0', sizes:['PP','P','M','G','GG'] },
-  { id:7, name:'Macaquinho Aura', cat:'Macaquinho', price:150, emoji:'🩱', tag:'Novo', colors:['Rosa','Nude'], bg:'#f5e0e0', sizes:['P','M','G'] },
-  { id:8, name:'Jaqueta Reflex', cat:'Jaqueta', price:220, emoji:'🧥', tag:'', colors:['Preto'], bg:'#c0c0c0', sizes:['P','M','G','GG'] },
-  { id:9, name:'Top Aura Rosa', cat:'Top', price:90, oldPrice:120, emoji:'💗', tag:'SALE', colors:['Rosa'], bg:'#f5d0e0', sizes:['PP','P','M','G'] },
-  { id:10, name:'Shorts SALE', cat:'Shorts', price:75, oldPrice:100, emoji:'🩳', tag:'SALE', colors:['Azul'], bg:'#d0e0f5', sizes:['P','M','G'] },
+  { id:1,  name:'Top Aura - Amarelo',            cat:'Top',        price:90,  img:'8-0dc8db856ba9667a8f17654171210680-1024-1024.webp',           tag:'Novo',  sizes:['PP','P','M','G','GG'] },
+  { id:2,  name:'Top Wine',                       cat:'Top',        price:95,  img:'top-frente-06a21c57546583f07e17748349845666-1024-1024.webp',    tag:'Novo',  sizes:['PP','P','M','G'] },
+  { id:3,  name:'Top Reflex Preto',               cat:'Top',        price:80,  img:'21-da339496283cc27b7017732657120507-1024-1024.webp',            tag:'',      sizes:['PP','P','M','G','GG'] },
+  { id:4,  name:'Top Reflex Azul',                cat:'Top',        price:80,  img:'24-ea192df7b2eb5ae18a17732676491252-1024-1024.webp',            tag:'',      sizes:['PP','P','M','G','GG'] },
+  { id:5,  name:'Top Vibe - Azul Petróleo',       cat:'Top',        price:95,  img:'6-ab7ec4b0273dd3f0d617654169079538-1024-1024.webp',             tag:'',      sizes:['PP','P','M','G'] },
+  { id:6,  name:'Top Vibe - Lilás',               cat:'Top',        price:95,  img:'7-cc57910920a24d4e6917654169412913-1024-1024.webp',             tag:'',      sizes:['PP','P','M','G'] },
+  { id:7,  name:'Top Alça dupla Verde/Ferrugem',  cat:'Top',        price:70,  oldPrice:80, img:'eleva-136-abb85d11bb778837a717647971914660-1024-1024.webp', tag:'SALE', sizes:['PP','P','M','G'] },
+  { id:8,  name:'Top Recortado Preto/Wine',        cat:'Top',        price:85,  img:'15354-e684528c755c19b23617647962798949-1024-1024.webp',          tag:'',      sizes:['PP','P','M','G','GG'] },
+  { id:9,  name:'Shorts Aura - Amarelo',           cat:'Shorts',     price:100, img:'9-f0ce45e50dc2f22e8f17654170943187-1024-1024.webp',             tag:'Novo',  sizes:['PP','P','M','G','GG'] },
+  { id:10, name:'Shorts Reflex Preto',             cat:'Shorts',     price:110, img:'shorts-refle-7d6be0711f8df15d5d17732633881081-1024-1024.webp',  tag:'',      sizes:['PP','P','M','G'] },
+  { id:11, name:'Shorts Reflex Azul',              cat:'Shorts',     price:110, img:'reflex-colecao-1-a07a67d18d569a35ed17732707275648-1024-1024.webp', tag:'',   sizes:['PP','P','M','G'] },
+  { id:12, name:'Shorts Vibe - Azul Petróleo',    cat:'Shorts',     price:105, img:'5-4e0557d8f8b9ecc52c17654168634635-1024-1024.webp',             tag:'',      sizes:['PP','P','M','G'] },
+  { id:13, name:'Shorts Vibe - Lilás',             cat:'Shorts',     price:105, img:'nova-colecao-b0e7ebe9cbfa156ba717654170527647-1024-1024.webp',  tag:'',      sizes:['PP','P','M','G'] },
+  { id:14, name:'Shorts basic Preto/Wine',         cat:'Shorts',     price:95,  img:'img_9912-cc18e8e8e4efcf8b9317647953355408-1024-1024.webp',      tag:'',      sizes:['PP','P','M','G'] },
+  { id:15, name:'Shorts cós duplo Azul/Fúcsia',   cat:'Shorts',     price:80,  oldPrice:90, img:'shorts-5c93add0cbd02ca5c217647977160320-1024-1024.webp', tag:'SALE', sizes:['PP','P','M','G'] },
+  { id:16, name:'Macaquinho Active - Preto',       cat:'Macaquinho', price:140, img:'4-881ca5c6a0da28882917654168173603-1024-1024.webp',             tag:'',      sizes:['PP','P','M','G'] },
+  { id:17, name:'Macaquinho Confort - Vinho',      cat:'Macaquinho', price:160, img:'image-10-0adf6a76ab2692b54e17731494456711-1024-1024.webp',      tag:'Novo',  sizes:['P','M','G'] },
 ];
 
-const CATS = ['Todos','Top','Shorts','Legging','Macaquinho','Jaqueta','Sale'];
+const CATS = ['Todos','Top','Shorts','Macaquinho','Sale'];
 let activeCat = 'Todos';
 let cart = [];
 let currentProduct = null;
 let selectedSize = null;
 let prevScreen = 'home';
 let favs = new Set();
+let couponApplied = false;
 
-function fmt(v) { return 'R$ '+v.toFixed(2).replace('.',','); }
+function fmt(v) { return 'R$ ' + v.toFixed(2).replace('.', ','); }
+function imgUrl(p) { return CDN + p.img + '?w=400'; }
 
 function goScreen(id) {
   if (id !== 'product') prevScreen = document.querySelector('.screen.active')?.id.replace('screen-','') || 'home';
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
+  document.getElementById('screen-' + id).classList.add('active');
   document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
-  const map = {home:'bnav-home',catalog:'bnav-catalog',cart:'bnav-cart',account:'bnav-account'};
+  const map = { home:'bnav-home', catalog:'bnav-catalog', cart:'bnav-cart', account:'bnav-account' };
   if (map[id]) document.getElementById(map[id]).classList.add('active');
   if (id === 'cart') renderCart();
   updateBadges();
-  document.getElementById('screen-'+id).scrollTop = 0;
+  document.getElementById('screen-' + id).scrollTop = 0;
 }
 
 function goBack() { goScreen(prevScreen || 'home'); }
-
 function setCat(c) { activeCat = c; }
 
-function cardHTML(p, small=false) {
+function cardHTML(p) {
   const isFav = favs.has(p.id);
   return `<div class="product-card" onclick="openProduct(${p.id})">
-    <div class="product-img" style="background:${p.bg}">
-      <div class="product-img-bg">${p.emoji}</div>
-      ${p.tag ? `<span class="product-tag">${p.tag}</span>` : ''}
+    <div class="product-img">
+      <img src="${imgUrl(p)}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+      ${p.tag ? `<span class="product-tag ${p.tag==='SALE'?'sale':''}">${p.tag}</span>` : ''}
       <div class="product-fav ${isFav?'faved':''}" id="fav-${p.id}" onclick="event.stopPropagation();toggleFav(${p.id})">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       </div>
@@ -696,40 +557,40 @@ function cardHTML(p, small=false) {
 }
 
 function toggleFav(id) {
-  if (favs.has(id)) { favs.delete(id); } else { favs.add(id); }
-  document.querySelectorAll('#fav-'+id).forEach(el => el.classList.toggle('faved', favs.has(id)));
+  favs.has(id) ? favs.delete(id) : favs.add(id);
+  document.querySelectorAll('#fav-' + id).forEach(el => el.classList.toggle('faved', favs.has(id)));
 }
 
 function renderHome() {
-  const catPills = CATS.slice(0,6).map(c => `<div class="cat-pill ${c==='Todos'?'active':''}" onclick="setCat('${c}');goScreen('catalog')">${c}</div>`).join('');
-  document.getElementById('home-cats').innerHTML = catPills;
-  const newProds = PRODUCTS.filter(p=>p.tag==='Novo').slice(0,4);
-  document.getElementById('home-grid').innerHTML = newProds.map(p=>cardHTML(p)).join('');
+  document.getElementById('home-cats').innerHTML = CATS.slice(0,5).map(c =>
+    `<div class="cat-pill ${c==='Todos'?'active':''}" onclick="setCat('${c}');goScreen('catalog')">${c}</div>`
+  ).join('');
+  const newProds = PRODUCTS.filter(p => p.tag === 'Novo').slice(0, 4);
+  document.getElementById('home-grid').innerHTML = newProds.map(p => cardHTML(p)).join('');
 }
 
 function renderCatalog() {
-  const q = (document.getElementById('search-input')?.value||'').toLowerCase();
-  const pills = CATS.map(c => `<div class="cat-pill ${c===activeCat?'active':''}" onclick="activeCat='${c}';renderCatalog()">${c}</div>`).join('');
-  document.getElementById('catalog-cats').innerHTML = pills;
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+  document.getElementById('catalog-cats').innerHTML = CATS.map(c =>
+    `<div class="cat-pill ${c===activeCat?'active':''}" onclick="activeCat='${c}';renderCatalog()">${c}</div>`
+  ).join('');
   let prods = PRODUCTS;
   if (activeCat !== 'Todos') {
-    if (activeCat === 'Sale') prods = prods.filter(p=>p.tag==='SALE');
-    else prods = prods.filter(p=>p.cat===activeCat);
+    if (activeCat === 'Sale') prods = prods.filter(p => p.tag === 'SALE');
+    else prods = prods.filter(p => p.cat === activeCat);
   }
-  if (q) prods = prods.filter(p=>p.name.toLowerCase().includes(q));
-  document.getElementById('catalog-grid').innerHTML = prods.map(p=>cardHTML(p)).join('');
+  if (q) prods = prods.filter(p => p.name.toLowerCase().includes(q));
+  document.getElementById('catalog-grid').innerHTML = prods.map(p => cardHTML(p)).join('');
 }
 
 function openProduct(id) {
-  currentProduct = PRODUCTS.find(p=>p.id===id);
+  currentProduct = PRODUCTS.find(p => p.id === id);
   selectedSize = null;
-  document.getElementById('detail-emoji').textContent = currentProduct.emoji;
-  document.getElementById('detail-img').style.background = currentProduct.bg;
+  document.getElementById('detail-img').src = imgUrl(currentProduct);
+  document.getElementById('detail-img').alt = currentProduct.name;
   document.getElementById('detail-name').textContent = currentProduct.name;
   document.getElementById('detail-price').textContent = fmt(currentProduct.price);
-  document.getElementById('detail-tag-top').textContent = currentProduct.tag;
-  document.getElementById('detail-tag-top').style.display = currentProduct.tag ? '' : 'none';
-  document.getElementById('size-grid').innerHTML = currentProduct.sizes.map(s=>
+  document.getElementById('size-grid').innerHTML = currentProduct.sizes.map(s =>
     `<button class="size-btn" onclick="selectSize('${s}',this)">${s}</button>`
   ).join('');
   prevScreen = document.querySelector('.screen.active')?.id.replace('screen-','') || 'catalog';
@@ -738,15 +599,15 @@ function openProduct(id) {
 
 function selectSize(s, el) {
   selectedSize = s;
-  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
 }
 
 function addToCart() {
   if (!selectedSize) { showToast('Selecione um tamanho'); return; }
-  const existing = cart.find(i=>i.id===currentProduct.id && i.size===selectedSize);
+  const existing = cart.find(i => i.id === currentProduct.id && i.size === selectedSize);
   if (existing) existing.qty++;
-  else cart.push({...currentProduct, size:selectedSize, qty:1});
+  else cart.push({ ...currentProduct, size: selectedSize, qty: 1 });
   updateBadges();
   showToast('Adicionado à sacola ✓');
 }
@@ -755,9 +616,9 @@ function renderCart() {
   const empty = cart.length === 0;
   document.getElementById('cart-empty').style.display = empty ? '' : 'none';
   document.getElementById('cart-footer').style.display = empty ? 'none' : '';
-  document.getElementById('cart-items').innerHTML = cart.map((item,i) => `
+  document.getElementById('cart-items').innerHTML = cart.map((item, i) => `
     <div class="cart-item">
-      <div class="cart-thumb" style="background:${item.bg}">${item.emoji}</div>
+      <div class="cart-thumb"><img src="${imgUrl(item)}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover"></div>
       <div class="cart-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-var">Tamanho: ${item.size}</div>
@@ -767,7 +628,7 @@ function renderCart() {
             <span class="qty-n">${item.qty}</span>
             <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
           </div>
-          <div class="cart-item-price">${fmt(item.price*item.qty)}</div>
+          <div class="cart-item-price">${fmt(item.price * item.qty)}</div>
         </div>
       </div>
     </div>`).join('');
@@ -776,12 +637,10 @@ function renderCart() {
 
 function changeQty(i, d) {
   cart[i].qty += d;
-  if (cart[i].qty <= 0) cart.splice(i,1);
-  renderCart();
-  updateBadges();
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+  renderCart(); updateBadges();
 }
 
-let couponApplied = false;
 function applyCoupon() {
   const v = document.getElementById('coupon-input').value.toUpperCase().trim();
   if (v === 'PRIMEIRACOMPRA') { couponApplied = true; updateSummary(); showToast('Cupom aplicado! 10% OFF ✓'); }
@@ -789,35 +648,30 @@ function applyCoupon() {
 }
 
 function updateSummary() {
-  const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
-  const frete = sub >= 250 ? 'Grátis' : 'R$ 19,90';
+  const sub = cart.reduce((a, i) => a + i.price * i.qty, 0);
   const freteVal = sub >= 250 ? 0 : 19.90;
-  const desc = couponApplied ? sub*0.1 : 0;
+  const desc = couponApplied ? sub * 0.1 : 0;
   const total = sub - desc + freteVal;
   document.getElementById('s-subtotal').textContent = fmt(sub);
-  document.getElementById('s-frete').textContent = frete;
-  document.getElementById('s-frete').className = freteVal===0 ? 'green' : '';
+  document.getElementById('s-frete').textContent = freteVal === 0 ? 'Grátis' : fmt(freteVal);
+  document.getElementById('s-frete').className = freteVal === 0 ? 'green' : '';
   document.getElementById('s-desc-row').style.display = couponApplied ? '' : 'none';
-  document.getElementById('s-desc').textContent = '− '+fmt(desc);
+  document.getElementById('s-desc').textContent = '− ' + fmt(desc);
   document.getElementById('s-total').textContent = fmt(total);
-  const parc = Math.ceil(total/6);
-  document.getElementById('s-parc').textContent = total > 0 ? `ou 6x de ${fmt(parc)} sem juros` : '';
+  document.getElementById('s-parc').textContent = total > 0 ? `ou 6x de ${fmt(Math.ceil(total / 6))} sem juros` : '';
 }
 
 function updateBadges() {
-  const n = cart.reduce((a,i)=>a+i.qty,0);
-  ['nav-badge','nav-badge2'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = n;
-  });
+  const n = cart.reduce((a, i) => a + i.qty, 0);
+  ['nav-badge','nav-badge2'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = n; });
   const nb = document.getElementById('bnav-badge');
-  if (nb) { nb.textContent = n; nb.style.display = n>0 ? 'flex' : 'none'; }
+  if (nb) { nb.textContent = n; nb.style.display = n > 0 ? 'flex' : 'none'; }
 }
 
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2200);
+  setTimeout(() => t.classList.remove('show'), 2200);
 }
 
 renderHome();
@@ -825,10 +679,9 @@ renderCatalog();
 updateBadges();
 </script>
 
-<!-- Service Worker Registration -->
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 </script>
 </body>

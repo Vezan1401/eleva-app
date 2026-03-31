@@ -270,6 +270,7 @@ body{font-family:var(--font-b);background:var(--white);color:var(--black);overfl
     <div class="detail-label">Tamanho</div>
     <div class="size-grid" id="size-grid"></div>
     <button class="add-cart-btn" onclick="addToCart()">ADICIONAR À SACOLA</button>
+    <button class="add-cart-btn" style="background:var(--accent);color:var(--black);margin-top:10px;" onclick="buyNow()">COMPRAR AGORA</button>
     <div style="height:16px"></div>
   </div>
 </div>
@@ -470,7 +471,7 @@ const firebaseConfig = {
   measurementId: "G-QQZGNLEVEM"
 };
 
-const ADMIN_EMAIL = 'piovesan5k@gmail.com'; // TROQUE PELO SEU EMAIL
+const ADMIN_EMAIL = 'SEU_EMAIL_AQUI@gmail.com'; // TROQUE PELO SEU EMAIL
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -623,30 +624,38 @@ window.handleAccountNav = () => {
 
 window.handleCheckout = () => {
   if (!currentUser) { showToast('Faça login para finalizar a compra'); setTimeout(()=>goScreen('login'),1000); return; }
-  showToast('Redirecionando para o pagamento...');
+  if (cart.length === 0) return;
+  showToast('Abrindo pagamento seguro...');
+  setTimeout(() => {
+    if (cart.length === 1) {
+      window.open(cart[0].url, '_blank');
+    } else {
+      window.open('https://byeleva.com.br', '_blank');
+    }
+  }, 800);
 };
 </script>
 
 <script>
 const CDN = 'https://dcdn-us.mitiendanube.com/stores/006/587/246/products/';
 const PRODUCTS = [
-  {id:1,name:'Top Aura - Amarelo',cat:'Top',price:90,img:'8-0dc8db856ba9667a8f17654171210680-1024-1024.webp',tag:'Novo',sizes:['PP','P','M','G','GG']},
-  {id:2,name:'Top Wine',cat:'Top',price:95,img:'top-frente-06a21c57546583f07e17748349845666-1024-1024.webp',tag:'Novo',sizes:['PP','P','M','G']},
-  {id:3,name:'Top Reflex Preto',cat:'Top',price:80,img:'21-da339496283cc27b7017732657120507-1024-1024.webp',tag:'',sizes:['PP','P','M','G','GG']},
-  {id:4,name:'Top Reflex Azul',cat:'Top',price:80,img:'24-ea192df7b2eb5ae18a17732676491252-1024-1024.webp',tag:'',sizes:['PP','P','M','G','GG']},
-  {id:5,name:'Top Vibe - Azul Petróleo',cat:'Top',price:95,img:'6-ab7ec4b0273dd3f0d617654169079538-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:6,name:'Top Vibe - Lilás',cat:'Top',price:95,img:'7-cc57910920a24d4e6917654169412913-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:7,name:'Top Alça dupla Verde/Ferrugem',cat:'Top',price:70,oldPrice:80,img:'eleva-136-abb85d11bb778837a717647971914660-1024-1024.webp',tag:'SALE',sizes:['PP','P','M','G']},
-  {id:8,name:'Top Recortado Preto/Wine',cat:'Top',price:85,img:'15354-e684528c755c19b23617647962798949-1024-1024.webp',tag:'',sizes:['PP','P','M','G','GG']},
-  {id:9,name:'Shorts Aura - Amarelo',cat:'Shorts',price:100,img:'9-f0ce45e50dc2f22e8f17654170943187-1024-1024.webp',tag:'Novo',sizes:['PP','P','M','G','GG']},
-  {id:10,name:'Shorts Reflex Preto',cat:'Shorts',price:110,img:'shorts-refle-7d6be0711f8df15d5d17732633881081-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:11,name:'Shorts Reflex Azul',cat:'Shorts',price:110,img:'reflex-colecao-1-a07a67d18d569a35ed17732707275648-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:12,name:'Shorts Vibe - Azul Petróleo',cat:'Shorts',price:105,img:'5-4e0557d8f8b9ecc52c17654168634635-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:13,name:'Shorts Vibe - Lilás',cat:'Shorts',price:105,img:'nova-colecao-b0e7ebe9cbfa156ba717654170527647-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:14,name:'Shorts basic Preto/Wine',cat:'Shorts',price:95,img:'img_9912-cc18e8e8e4efcf8b9317647953355408-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:15,name:'Shorts cós duplo Azul/Fúcsia',cat:'Shorts',price:80,oldPrice:90,img:'shorts-5c93add0cbd02ca5c217647977160320-1024-1024.webp',tag:'SALE',sizes:['PP','P','M','G']},
-  {id:16,name:'Macaquinho Active - Preto',cat:'Macaquinho',price:140,img:'4-881ca5c6a0da28882917654168173603-1024-1024.webp',tag:'',sizes:['PP','P','M','G']},
-  {id:17,name:'Macaquinho Confort - Vinho',cat:'Macaquinho',price:160,img:'image-10-0adf6a76ab2692b54e17731494456711-1024-1024.webp',tag:'Novo',sizes:['P','M','G']},
+  {id:1,name:'Top Aura - Amarelo',cat:'Top',price:90,img:'8-0dc8db856ba9667a8f17654171210680-1024-1024.webp',tag:'Novo',sizes:['PP','P','M','G','GG'],url:'https://byeleva.com.br/produtos/top-aura-amarelo'},
+  {id:2,name:'Top Wine',cat:'Top',price:95,img:'top-frente-06a21c57546583f07e17748349845666-1024-1024.webp',tag:'Novo',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/top-wine-1r12m'},
+  {id:3,name:'Top Reflex Preto',cat:'Top',price:80,img:'21-da339496283cc27b7017732657120507-1024-1024.webp',tag:'',sizes:['PP','P','M','G','GG'],url:'https://byeleva.com.br/produtos/top-reflex-preto-jx0pi'},
+  {id:4,name:'Top Reflex Azul',cat:'Top',price:80,img:'24-ea192df7b2eb5ae18a17732676491252-1024-1024.webp',tag:'',sizes:['PP','P','M','G','GG'],url:'https://byeleva.com.br/produtos/top-reflex-azul'},
+  {id:5,name:'Top Vibe - Azul Petróleo',cat:'Top',price:95,img:'6-ab7ec4b0273dd3f0d617654169079538-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/top-vibe-azul-petroleo'},
+  {id:6,name:'Top Vibe - Lilás',cat:'Top',price:95,img:'7-cc57910920a24d4e6917654169412913-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/top-vibe-lilas'},
+  {id:7,name:'Top Alça dupla Verde/Ferrugem',cat:'Top',price:70,oldPrice:80,img:'eleva-136-abb85d11bb778837a717647971914660-1024-1024.webp',tag:'SALE',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/top-alca-dupla-verde-ferrugem'},
+  {id:8,name:'Top Recortado Preto/Wine',cat:'Top',price:85,img:'15354-e684528c755c19b23617647962798949-1024-1024.webp',tag:'',sizes:['PP','P','M','G','GG'],url:'https://byeleva.com.br/produtos/top-recortado-preto-wine'},
+  {id:9,name:'Shorts Aura - Amarelo',cat:'Shorts',price:100,img:'9-f0ce45e50dc2f22e8f17654170943187-1024-1024.webp',tag:'Novo',sizes:['PP','P','M','G','GG'],url:'https://byeleva.com.br/produtos/shorts-aura-amarelo'},
+  {id:10,name:'Shorts Reflex Preto',cat:'Shorts',price:110,img:'shorts-refle-7d6be0711f8df15d5d17732633881081-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/sh'},
+  {id:11,name:'Shorts Reflex Azul',cat:'Shorts',price:110,img:'reflex-colecao-1-a07a67d18d569a35ed17732707275648-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/shorts-reflex-azul'},
+  {id:12,name:'Shorts Vibe - Azul Petróleo',cat:'Shorts',price:105,img:'5-4e0557d8f8b9ecc52c17654168634635-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/shorts-vibe-azul-petroleo'},
+  {id:13,name:'Shorts Vibe - Lilás',cat:'Shorts',price:105,img:'nova-colecao-b0e7ebe9cbfa156ba717654170527647-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/shorts-vibe-lilas'},
+  {id:14,name:'Shorts basic Preto/Wine',cat:'Shorts',price:95,img:'img_9912-cc18e8e8e4efcf8b9317647953355408-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/shorts-basic-preto-wine'},
+  {id:15,name:'Shorts cós duplo Azul/Fúcsia',cat:'Shorts',price:80,oldPrice:90,img:'shorts-5c93add0cbd02ca5c217647977160320-1024-1024.webp',tag:'SALE',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/shorts-cos-duplo-azul-petroleo-fucsia'},
+  {id:16,name:'Macaquinho Active - Preto',cat:'Macaquinho',price:140,img:'4-881ca5c6a0da28882917654168173603-1024-1024.webp',tag:'',sizes:['PP','P','M','G'],url:'https://byeleva.com.br/produtos/macaquinho-active-preto'},
+  {id:17,name:'Macaquinho Confort - Vinho',cat:'Macaquinho',price:160,img:'image-10-0adf6a76ab2692b54e17731494456711-1024-1024.webp',tag:'Novo',sizes:['P','M','G'],url:'https://byeleva.com.br/produtos/macaquinho-confort-vinho-sh50l'},
 ];
 const CATS=['Todos','Top','Shorts','Macaquinho','Sale'];
 let activeCat='Todos',cart=[],currentProduct=null,selectedSize=null,prevScreen='home',favs=new Set(),couponApplied=false;
@@ -710,7 +719,11 @@ function openProduct(id){
   goScreen('product');
 }
 
-function selectSize(s,el){selectedSize=s;document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));el.classList.add('selected');}
+function buyNow(){
+  if(!selectedSize){showToast('Selecione um tamanho');return;}
+  showToast('Abrindo pagamento seguro...');
+  setTimeout(()=>window.open(currentProduct.url,'_blank'),800);
+}
 
 function addToCart(){
   if(!selectedSize){showToast('Selecione um tamanho');return;}
